@@ -1,0 +1,69 @@
+<!doctype html >
+<html ng-app="todoApp">
+  <head>
+  <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+      </head>
+  <body ng-controller="TodoListController">
+  <div class="container">
+   <div class="row">
+    <div class="page-header">
+      <div class="span9">
+        <h1>Gerenciador de Shake</h1>
+      </div>
+      <div class="span3">
+        <input type="search" ng-model="search" placeholder="Buscar por...">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <table id="lista-compras" class="table table-striped">
+      <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Status</th>
+            <th>Valor Pago</th>
+            <th>Forma de Pagamento</th>
+            <th>Data</th>
+            <th>Credito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in pessoa | filter:search" >
+          <td><strong>{{ item.nome }}</strong></td>
+          <td>{{ item.status }}</td>
+          <td>{{item.valorPago}}</td>
+          <td>{{item.formaDePagamento}}</td>
+            <td>{{item.data}}</td>
+            <td>{{item.credito}}</td>
+          <td>
+            <button class="btn btn-warning btn-small" ng-click="editarItem($index)">
+              <i class="icon-pencil icon-white"></i> editar
+            </button>
+            <button class="btn btn-danger btn-small" ng-click="deleteItem($index)">
+              <i class="icon-trash icon-white"></i> deletar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ <div class="row form-inline">
+    <input type="text" ng-model="item.nome" placeholder="Nome">
+    <input type="text" ng-model="item.status" placeholder="Status">
+    <input type="text" ng-model="item.valorPago" placeholder="ValorPago">
+    <input type="text" ng-model="item.formaDePagamento" placeholder="formaDePagamento">
+    <input type="text" ng-model="item.data" placeholder="data">
+    <input type="text" ng-model="item.credito" placeholder="credito">
+    <button ng-hide="edit" class="btn btn-success" ng-click="cadastra()">
+      <i class="icon-plus icon-white"></i> adicionar
+    </button>
+    <button ng-show="edit" class="btn btn-success" ng-click="applyChanges()">
+      <i class="icon-ok icon-white"></i> salvar
+    </button>
+  </div>
+  </div>
+  </body>
+</html>
